@@ -1,65 +1,76 @@
-import Image from "next/image";
+import SearchInput from "@/components/SearchInput";
+import * as motion from "framer-motion/client";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className="flex flex-col items-center justify-center min-h-[80vh] py-12"
+    >
+      {/* Glowing 3D honey jar hero */}
+      <motion.div
+        animate={{ y: [0, -12, 0], rotateY: [0, 8, 0, -8, 0] }}
+        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+        className="relative mb-8"
+        style={{ perspective: "600px" }}
+      >
+        {/* Glow ring behind jar */}
+        <div
+          className="absolute inset-0 rounded-full blur-2xl"
+          style={{ background: "radial-gradient(circle, rgba(251,191,36,0.5) 0%, transparent 70%)", transform: "scale(1.6) translateY(10px)" }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <div className="relative text-9xl" style={{ filter: "drop-shadow(0 0 32px rgba(251,191,36,0.8)) drop-shadow(0 8px 24px rgba(217,119,6,0.6))" }}>
+          🍯
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </motion.div>
+
+      {/* Title */}
+      <motion.h1
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="font-playfair text-4xl md:text-6xl font-black text-center mb-4 leading-tight"
+        style={{ background: "linear-gradient(135deg, #fbbf24 0%, #fef3c7 40%, #d97706 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+      >
+        Find Your Natural Relief
+      </motion.h1>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.35, duration: 0.5 }}
+        className="text-center mb-10 text-lg max-w-lg"
+        style={{ color: "#c4956a" }}
+      >
+        Discover traditional honey-based remedies tailored for your specific ailments.
+      </motion.p>
+
+      {/* Search card */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ delay: 0.45, duration: 0.5, ease: "easeOut" }}
+        className="w-full max-w-2xl glass-card glow-border rounded-2xl p-6 md:p-8"
+      >
+        <SearchInput />
+      </motion.div>
+
+      {/* Decorative floating hexagons (CSS) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-4xl opacity-10"
+            style={{ left: `${10 + i * 15}%`, top: `${20 + (i % 3) * 25}%` }}
+            animate={{ y: [0, -20, 0], rotate: [0, 30, 0] }}
+            transition={{ repeat: Infinity, duration: 5 + i * 0.8, delay: i * 0.6, ease: "easeInOut" }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            ⬡
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
   );
 }

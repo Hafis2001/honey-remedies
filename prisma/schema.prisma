@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model HoneyVariety {
+  id                  String        @id @default(cuid())
+  name                String
+  description         String
+  keyProperties       String        // Stored as JSON string array
+  bestForTags         String        // Stored as JSON string array
+  notRecommendedFor   String        // Stored as JSON string array
+  productUrl          String?
+  imageUrl            String?
+  remedies            RemedyHoney[]
+}
+
+model Remedy {
+  id                  String        @id @default(cuid())
+  title               String
+  ailmentTags         String        // Stored as JSON string array
+  description         String
+  ingredients         String        // Stored as JSON string array
+  steps               String        // Stored as JSON string array
+  usageInstructions   String
+  safetyNotes         String
+  relatedProductUrl   String?
+  minimumAge          Int           @default(1)
+  isDiabeticSafe      Boolean       @default(true)
+  isPregnancySafe     Boolean       @default(false)
+  targetGender        String?       // "male", "female", or null for universal
+  honeyVarieties      RemedyHoney[]
+}
+
+// Join table for Many-to-Many relationship
+model RemedyHoney {
+  remedyId       String
+  honeyVarietyId String
+  remedy         Remedy       @relation(fields: [remedyId], references: [id], onDelete: Cascade)
+  honeyVariety   HoneyVariety @relation(fields: [honeyVarietyId], references: [id], onDelete: Cascade)
+
+  @@id([remedyId, honeyVarietyId])
+}
