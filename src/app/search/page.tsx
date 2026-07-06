@@ -4,6 +4,8 @@ import Link from "next/link";
 import SearchInput from "@/components/SearchInput";
 import * as motion from "framer-motion/client";
 
+import { ArrowLeft } from "lucide-react";
+
 export const dynamic = 'force-dynamic';
 
 // Removed unused getShopUrl function
@@ -39,6 +41,10 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6 max-w-3xl mx-auto pt-12">
+
+      <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium hover:opacity-80 -mt-6 mb-2" style={{ color: "#d97706" }}>
+        <ArrowLeft className="w-4 h-4" /> Back to home
+      </Link>
 
       {/* Search Input */}
       <div className="glass-card rounded-2xl p-4">

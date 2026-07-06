@@ -78,7 +78,7 @@ export default function RootLayout({
           WebkitBackdropFilter: "blur(20px)",
         }}>
           <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-            <Link href="/" className="flex items-center gap-3 group">
+            <Link href="/info" className="flex items-center gap-3 group">
               <img src="/images/logo_beecraft_white.png" alt="Beecraft Logo" className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] group-hover:scale-105 transition-transform rounded-sm" />
               <span className="font-playfair text-xl font-bold tracking-wide" style={{ color: "#fbbf24" }}>
                 Beecraft Remedies
@@ -92,38 +92,7 @@ export default function RootLayout({
           {children}
         </main>
 
-        {/* Footer */}
-        <footer className="relative z-10 border-t border-amber-900/30 py-10 px-4 mt-8"
-          style={{ background: "rgba(13, 5, 0, 0.8)", backdropFilter: "blur(12px)" }}>
-          <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-8 items-center md:items-start text-sm mb-8">
-            <div className="flex-1 text-center md:text-left space-y-4">
-              <img src="/images/logo_beecraft_white.png" alt="Beecraft Logo" className="w-20 h-20 object-contain mx-auto md:mx-0 drop-shadow-[0_0_12px_rgba(251,191,36,0.3)] rounded-md" />
-              <p style={{ color: "#f8fafc", lineHeight: "1.6" }}>
-                "At BeeCraft Museum, we warmly embrace the buzz for nature's guardianship. We partner with local groups to nurture the well-being of our essential friends, the bees."
-              </p>
-            </div>
-            
-            <div className="flex-1 flex flex-col items-center md:items-end gap-3 md:mt-4" style={{ color: "#f8fafc" }}>
-              <div className="flex items-center gap-2">
-                <strong style={{ color: "#fbbf24" }}>Location:</strong> Vythiri, Wayanad
-              </div>
-              <div className="flex items-center gap-2">
-                <strong style={{ color: "#fbbf24" }}>Email:</strong> beecraftshoney@gmail.com
-              </div>
-              <div className="flex items-center gap-2">
-                <strong style={{ color: "#fbbf24" }}>Phone:</strong> +91 92 0707 9001
-              </div>
-            </div>
-          </div>
-          
-          <div className="max-w-5xl mx-auto flex gap-3 text-xs pt-6 border-t border-amber-900/40" style={{ color: "#b45309" }}>
-            <Info className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#d97706" }} />
-            <p>
-              <strong style={{ color: "#fbbf24" }}>Disclaimer:</strong>{" "}
-              This information is for general wellness purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. Consult a doctor for serious or persistent symptoms. Honey should not be given to infants under 12 months of age.
-            </p>
-          </div>
-        </footer>
+
       </body>
     </html>
   );
