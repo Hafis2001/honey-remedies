@@ -25,13 +25,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Honey Remedy Finder",
-  description: "Find natural honey remedies for everyday ailments.",
+  title: "Beecraft Remedies",
+  description: "Find natural honey remedies for everyday ailments with Beecraft.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Honey Remedies",
+    title: "Beecraft Remedies",
   },
 };
 
@@ -80,7 +80,7 @@ export default function RootLayout({
             <Link href="/" className="flex items-center gap-3 group">
               <span className="text-3xl drop-shadow-[0_0_12px_rgba(251,191,36,0.8)] group-hover:scale-110 transition-transform">🍯</span>
               <span className="font-playfair text-xl font-bold tracking-wide" style={{ color: "#fbbf24" }}>
-                Honey Remedies
+                Beecraft Remedies
               </span>
             </Link>
           </div>

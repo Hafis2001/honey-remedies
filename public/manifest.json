@@ -1,7 +1,7 @@
 {
-  "name": "Honey Remedy Finder",
-  "short_name": "Honey Remedies",
-  "description": "Find natural honey remedies for everyday ailments.",
+  "name": "Beecraft Remedies",
+  "short_name": "Beecraft",
+  "description": "Find natural honey remedies for everyday ailments with Beecraft.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fffdf7",
