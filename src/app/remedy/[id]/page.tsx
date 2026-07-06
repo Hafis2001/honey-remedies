@@ -80,19 +80,33 @@ export default async function RemedyPage({ params }: { params: Promise<{ id: str
                 🍯 Recommended Honey Varieties
               </h2>
               <div className="space-y-3">
-                {remedy.honeyVarieties.map(({ honeyVariety }) => (
-                  <div key={honeyVariety.id} className="rounded-xl p-4" style={{ background: "rgba(120,53,15,0.2)", border: "1px solid rgba(251,191,36,0.15)" }}>
-                    <h3 className="font-bold text-lg mb-1" style={{ color: "#fef3c7" }}>{honeyVariety.name}</h3>
-                    <p className="text-sm mb-3" style={{ color: "#c4956a" }}>{honeyVariety.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {JSON.parse(honeyVariety.keyProperties).map((prop: string) => (
-                        <span key={prop} className="px-2.5 py-0.5 rounded-full text-xs font-medium" style={{ background: "rgba(217,119,6,0.2)", color: "#fcd34d", border: "1px solid rgba(251,191,36,0.2)" }}>
-                          {prop}
-                        </span>
-                      ))}
+                {remedy.honeyVarieties.map(({ honeyVariety }) => {
+                  let shopUrl = "https://www.beecrafthoney.com/";
+                  if (honeyVariety.name.toLowerCase().includes("black forest")) {
+                    shopUrl = "https://www.beecrafthoney.com/product/Honey/1/3/101/Black-Forest-Honey---500gm-3";
+                  }
+                  
+                  return (
+                    <div key={honeyVariety.id} className="rounded-xl p-4" style={{ background: "rgba(120,53,15,0.2)", border: "1px solid rgba(251,191,36,0.15)" }}>
+                      <div className="flex justify-between items-start gap-4 mb-3">
+                        <div>
+                          <h3 className="font-bold text-lg mb-1" style={{ color: "#fef3c7" }}>{honeyVariety.name}</h3>
+                          <p className="text-sm" style={{ color: "#c4956a" }}>{honeyVariety.description}</p>
+                        </div>
+                        <a href={shopUrl} target="_blank" rel="noopener noreferrer" className="btn-gold whitespace-nowrap text-xs font-bold px-4 py-2 rounded-lg flex-shrink-0">
+                          Shop Now
+                        </a>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {JSON.parse(honeyVariety.keyProperties).map((prop: string) => (
+                          <span key={prop} className="px-2.5 py-0.5 rounded-full text-xs font-medium" style={{ background: "rgba(217,119,6,0.2)", color: "#fcd34d", border: "1px solid rgba(251,191,36,0.2)" }}>
+                            {prop}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </motion.div>
           )}
