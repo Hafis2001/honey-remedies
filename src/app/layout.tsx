@@ -79,7 +79,7 @@ export default function RootLayout({
         }}>
           <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
             <Link href="/" className="flex items-center gap-3 group">
-              <img src="/images/logo_beecraft.png" alt="Beecraft Logo" className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] group-hover:scale-105 transition-transform" />
+              <img src="/images/logo_beecraft_white.png" alt="Beecraft Logo" className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] group-hover:scale-105 transition-transform rounded-sm" />
               <span className="font-playfair text-xl font-bold tracking-wide" style={{ color: "#fbbf24" }}>
                 Beecraft Remedies
               </span>
@@ -97,7 +97,7 @@ export default function RootLayout({
           style={{ background: "rgba(13, 5, 0, 0.8)", backdropFilter: "blur(12px)" }}>
           <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-8 items-center md:items-start text-sm mb-8">
             <div className="flex-1 text-center md:text-left space-y-4">
-              <img src="/images/logo_beecraft.png" alt="Beecraft Logo" className="w-20 h-20 object-contain mx-auto md:mx-0 drop-shadow-[0_0_12px_rgba(251,191,36,0.3)]" />
+              <img src="/images/logo_beecraft_white.png" alt="Beecraft Logo" className="w-20 h-20 object-contain mx-auto md:mx-0 drop-shadow-[0_0_12px_rgba(251,191,36,0.3)] rounded-md" />
               <p style={{ color: "#f8fafc", lineHeight: "1.6" }}>
                 "At BeeCraft Museum, we warmly embrace the buzz for nature's guardianship. We partner with local groups to nurture the well-being of our essential friends, the bees."
               </p>
