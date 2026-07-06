@@ -35,7 +35,7 @@ export default function SearchInput() {
         </div>
         <input
           type="text"
-          className="flex-1 bg-transparent text-base py-4 px-3 outline-none"
+          className="flex-1 min-w-0 bg-transparent text-sm sm:text-base py-3 sm:py-4 px-2 sm:px-3 outline-none"
           placeholder="What's bothering you today?"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -44,7 +44,7 @@ export default function SearchInput() {
         <motion.button
           type="submit"
           whileTap={{ scale: 0.95 }}
-          className="btn-gold flex-shrink-0 px-4 py-3 m-1.5 rounded-lg text-sm font-semibold whitespace-nowrap"
+          className="btn-gold flex-shrink-0 px-3 sm:px-4 py-2 sm:py-3 m-1 sm:m-1.5 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap"
         >
           Search
         </motion.button>
