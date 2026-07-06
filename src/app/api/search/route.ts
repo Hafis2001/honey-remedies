@@ -78,49 +78,59 @@ export async function GET(req: NextRequest) {
 
     // --- WIKIPEDIA FALLBACK ---
     try {
-      const wikiRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
-      if (wikiRes.ok) {
-        const wikiData = await wikiRes.json();
-        
-        if (wikiData && wikiData.extract) {
-          const dynamicRemedy = {
-            id: `wiki-${Date.now()}`,
-            title: `Honey Remedy for ${wikiData.title}`,
-            ailmentTags: JSON.stringify([query.toLowerCase()]),
-            description: `${wikiData.extract}\n\nWhile this is a general description from Wikipedia, incorporating raw honey into your daily routine can provide natural soothing properties for many related symptoms.`,
-            ingredients: JSON.stringify([
-              "1 tbsp Raw Manuka or Local Honey",
-              "1 cup warm water or herbal tea"
-            ]),
-            steps: JSON.stringify([
-              "Ensure the water or tea is warm, not boiling (boiling water destroys honey's beneficial enzymes).",
-              "Stir in the honey until fully dissolved.",
-              "Sip slowly to soothe the throat and body."
-            ]),
-            usageInstructions: "Consume 1-2 times daily as needed for comfort.",
-            safetyNotes: "Not for infants under 1 year. If symptoms are severe or persist, consult a healthcare professional. (Generated via Wikipedia search)",
-            relatedProductUrl: null,
-            minimumAge: 1,
-            isDiabeticSafe: false,
-            isPregnancySafe: true,
-            targetGender: null,
-            honeyVarieties: [
-              {
-                honeyVariety: {
-                  id: "dynamic-honey",
-                  name: "Raw Honey",
-                  description: "A universally beneficial honey known for its antibacterial and soothing properties.",
-                  keyProperties: JSON.stringify(["soothing", "antibacterial", "natural energy"]),
-                  bestForTags: JSON.stringify(["general wellness", query.toLowerCase()]),
-                  notRecommendedFor: JSON.stringify([]),
-                  productUrl: null,
-                  imageUrl: null,
-                }
-              }
-            ]
-          };
+      // 1. Search Wikipedia for the closest article match
+      const searchRes = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&utf8=&format=json`);
+      if (searchRes.ok) {
+        const searchData = await searchRes.json();
+        const firstMatch = searchData?.query?.search?.[0];
 
-          return NextResponse.json([dynamicRemedy]);
+        if (firstMatch && firstMatch.title) {
+          // 2. Fetch the summary for the matched article title
+          const wikiRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(firstMatch.title)}`);
+          if (wikiRes.ok) {
+            const wikiData = await wikiRes.json();
+            
+            if (wikiData && wikiData.extract) {
+              const dynamicRemedy = {
+                id: `wiki-${Date.now()}`,
+                title: `Honey Remedy for ${wikiData.title}`,
+                ailmentTags: JSON.stringify([query.toLowerCase(), firstMatch.title.toLowerCase()]),
+                description: `${wikiData.extract}\n\nWhile this is a general description from Wikipedia, incorporating raw honey into your daily routine can provide natural soothing properties for many related symptoms.`,
+                ingredients: JSON.stringify([
+                  "1 tbsp Raw Manuka or Local Honey",
+                  "1 cup warm water or herbal tea"
+                ]),
+                steps: JSON.stringify([
+                  "Ensure the water or tea is warm, not boiling (boiling water destroys honey's beneficial enzymes).",
+                  "Stir in the honey until fully dissolved.",
+                  "Sip slowly to soothe the throat and body."
+                ]),
+                usageInstructions: "Consume 1-2 times daily as needed for comfort.",
+                safetyNotes: "Not for infants under 1 year. If symptoms are severe or persist, consult a healthcare professional. (Generated via Wikipedia search)",
+                relatedProductUrl: null,
+                minimumAge: 1,
+                isDiabeticSafe: false,
+                isPregnancySafe: true,
+                targetGender: null,
+                honeyVarieties: [
+                  {
+                    honeyVariety: {
+                      id: "dynamic-honey",
+                      name: "Raw Honey",
+                      description: "A universally beneficial honey known for its antibacterial and soothing properties.",
+                      keyProperties: JSON.stringify(["soothing", "antibacterial", "natural energy"]),
+                      bestForTags: JSON.stringify(["general wellness", query.toLowerCase()]),
+                      notRecommendedFor: JSON.stringify([]),
+                      productUrl: null,
+                      imageUrl: null,
+                    }
+                  }
+                ]
+              };
+
+              return NextResponse.json([dynamicRemedy]);
+            }
+          }
         }
       }
     } catch (wikiError) {
