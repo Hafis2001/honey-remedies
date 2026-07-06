@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Fuse from "fuse.js";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import SearchInput from "@/components/SearchInput";
 import * as motion from "framer-motion/client";
 
@@ -20,11 +19,12 @@ function getShopUrl(name: string): string {
   return "https://www.beecrafthoney.com/";
 }
 
-async function getSearchResults(query: string) {
+async function getRemedies(query: string) {
   const allRemedies = await prisma.remedy.findMany({
     include: {
       honeyVarieties: { include: { honeyVariety: true } },
     },
+    orderBy: { title: "asc" },
   });
 
   if (!query) return allRemedies;
@@ -35,129 +35,114 @@ async function getSearchResults(query: string) {
       { name: "ailmentTags", weight: 2 },
       { name: "description", weight: 1 },
     ],
-    threshold: 0.35,
+    threshold: 0.4,
     ignoreLocation: true,
     includeScore: true,
   });
 
-  return fuse.search(query)
-    .sort((a, b) => (a.score || 0) - (b.score || 0))
-    .map(r => r.item);
+  return fuse.search(query).map(r => r.item);
 }
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q } = await searchParams;
   const query = q || "";
-  const remedies = await getSearchResults(query);
+  const remedies = await getRemedies(query);
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-      <div className="flex items-center gap-3">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium hover:opacity-80 transition-opacity" style={{ color: "#d97706" }}>
-          <ArrowLeft className="w-4 h-4" /> Back
-        </Link>
-      </div>
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6 max-w-3xl mx-auto">
 
       {/* Search Input */}
-      <div className="glass-card rounded-2xl p-5">
+      <div className="glass-card rounded-2xl p-4">
         <SearchInput />
       </div>
 
-      {/* Page heading */}
-      <h1 className="font-playfair text-3xl font-bold" style={{ color: "#fbbf24" }}>
-        {query ? `Results for "${query}"` : "All Remedies"}
-      </h1>
+      {/* Count */}
+      <p className="text-sm" style={{ color: "#d97706" }}>
+        {query
+          ? `${remedies.length} result${remedies.length !== 1 ? "s" : ""} for "${query}"`
+          : `${remedies.length} remedy${remedies.length !== 1 ? "ies" : ""} available`}
+      </p>
 
       {/* Results */}
       {remedies.length === 0 ? (
         <div className="glass-card rounded-2xl p-12 text-center">
           <div className="text-6xl mb-4 gold-glow">🍯</div>
           <h2 className="font-playfair text-2xl font-bold mb-2" style={{ color: "#fbbf24" }}>No matches found</h2>
-          <p style={{ color: "#f8fafc" }}>Try searching for "weight loss", "cough", or "indigestion".</p>
+          <p style={{ color: "#f8fafc" }}>Try a different search term.</p>
         </div>
       ) : (
         <motion.div
           initial="hidden" animate="show"
-          variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.08 } } }}
-          className="grid gap-4"
+          variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.07 } } }}
+          className="grid gap-5"
         >
-          {remedies.map((remedy: any) => (
-            <motion.div
-              key={remedy.id}
-              variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } }}
-              whileHover={{ scale: 1.012, y: -2 }}
-            >
-              <div className="glass-card glass-card-hover rounded-2xl overflow-hidden">
-                {/* Card Header */}
-                <div className="px-6 pt-6 pb-4 border-b" style={{ borderColor: "rgba(251,191,36,0.12)", background: "linear-gradient(135deg, rgba(120,53,15,0.25) 0%, rgba(20,8,0,0.15) 100%)" }}>
-                  <Link href={`/remedy/${remedy.id}`}>
-                    <h3 className="font-playfair text-2xl font-bold hover:opacity-80 transition-opacity" style={{ color: "#fef3c7" }}>
-                      {remedy.title}
-                    </h3>
-                  </Link>
-                </div>
+          {remedies.map((remedy: any) => {
+            const ingredients: string[] = JSON.parse(remedy.ingredients || "[]");
+            return (
+              <motion.div
+                key={remedy.id}
+                variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+                whileHover={{ scale: 1.01, y: -2 }}
+              >
+                <div className="glass-card glass-card-hover rounded-2xl overflow-hidden">
 
-                <div className="px-6 py-5 space-y-4">
-                  {/* Ingredients preview */}
-                  {(() => {
-                    const ingredients: string[] = JSON.parse(remedy.ingredients || "[]");
-                    return ingredients.length > 0 ? (
+                  {/* ── Title ── */}
+                  <div className="px-6 pt-5 pb-4 border-b" style={{ borderColor: "rgba(251,191,36,0.15)", background: "linear-gradient(135deg, rgba(120,53,15,0.3) 0%, rgba(20,8,0,0.2) 100%)" }}>
+                    <h2 className="font-playfair text-2xl font-bold" style={{ color: "#fef3c7" }}>
+                      {remedy.title}
+                    </h2>
+                  </div>
+
+                  <div className="px-6 py-5 space-y-5">
+
+                    {/* ── Ingredients ── */}
+                    {ingredients.length > 0 && (
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#d97706" }}>Ingredients</p>
-                        <ul className="space-y-1">
+                        <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#fbbf24" }}>Ingredients</p>
+                        <ul className="space-y-1.5">
                           {ingredients.map((ing: string, i: number) => (
-                            <li key={i} className="flex items-start gap-2 text-sm" style={{ color: "#f8fafc" }}>
-                              <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: "#d97706" }} />
+                            <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: "#f8fafc" }}>
+                              <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#d97706" }} />
                               {ing}
                             </li>
                           ))}
                         </ul>
                       </div>
-                    ) : null;
-                  })()}
+                    )}
 
-                  {/* Recommended Honey */}
-                  {remedy.honeyVarieties.length > 0 && (
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#d97706" }}>Recommended Honey</p>
-                      <div className="flex flex-wrap gap-2">
-                        {remedy.honeyVarieties.map((hv: any) => (
-                          <a
-                            key={hv.honeyVariety.id}
-                            href={getShopUrl(hv.honeyVariety.name)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold btn-gold"
-                          >
-                            🍯 {hv.honeyVariety.name}
-                          </a>
-                        ))}
+                    {/* ── Recommended Honey ── */}
+                    {remedy.honeyVarieties.length > 0 && (
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#fbbf24" }}>Recommended Honey</p>
+                        <div className="flex flex-wrap gap-2">
+                          {remedy.honeyVarieties.map((hv: any) => (
+                            <a
+                              key={hv.honeyVariety.id}
+                              href={getShopUrl(hv.honeyVariety.name)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold btn-gold"
+                            >
+                              🍯 {hv.honeyVariety.name}
+                            </a>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {/* Indication preview */}
-                  {remedy.usageInstructions && (
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "#d97706" }}>Indication</p>
-                      <p className="text-sm line-clamp-2" style={{ color: "#f8fafc" }}>{remedy.usageInstructions}</p>
-                    </div>
-                  )}
+                    {/* ── Indication ── */}
+                    {remedy.usageInstructions && (
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#fbbf24" }}>Indication</p>
+                        <p className="text-sm leading-relaxed" style={{ color: "#f8fafc" }}>{remedy.usageInstructions}</p>
+                      </div>
+                    )}
 
-                  {/* View Details button */}
-                  <div className="pt-2">
-                    <Link
-                      href={`/remedy/${remedy.id}`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold hover:opacity-80 transition-opacity"
-                      style={{ color: "#fbbf24" }}
-                    >
-                      View full details →
-                    </Link>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
       )}
     </motion.div>
