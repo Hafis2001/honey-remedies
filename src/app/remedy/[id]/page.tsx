@@ -7,7 +7,7 @@ import * as motion from "framer-motion/client";
 // Helper to determine shop URL for each honey type
 function getShopUrl(): string {
   // All products now go to the main product list page
-  return "https://www.beecrafthoney.com/product/Honey/1/3/101";
+  return "https://www.beecrafthoney.com/";
 }
 
 export default async function RemedyPage({ params }: { params: Promise<{ id: string }> }) {
