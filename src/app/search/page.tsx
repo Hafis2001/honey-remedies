@@ -82,7 +82,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
           <div className="glass-card rounded-2xl p-12 text-center">
             <div className="text-6xl mb-4 gold-glow">🍯</div>
             <h2 className="font-playfair text-2xl font-bold mb-2" style={{ color: "#fbbf24" }}>No matches found</h2>
-            <p style={{ color: "#c4956a" }}>Try "cough", "sore throat", or "indigestion".</p>
+            <p style={{ color: "#f8fafc" }}>Try "cough", "sore throat", or "indigestion".</p>
           </div>
         ) : (
           <motion.div
@@ -122,7 +122,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                         </div>
                       </div>
 
-                      <p className="text-sm mb-4 line-clamp-2" style={{ color: "#c4956a" }}>{remedy.description}</p>
+                      <p className="text-sm mb-4 line-clamp-2" style={{ color: "#f8fafc" }}>{remedy.description}</p>
 
                       {remedy.honeyVarieties.length > 0 && (
                         <div className="flex items-center gap-2 text-sm py-2 px-3 rounded-lg" style={{ background: "rgba(217,119,6,0.12)", border: "1px solid rgba(251,191,36,0.15)" }}>

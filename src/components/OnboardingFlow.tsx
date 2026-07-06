@@ -98,7 +98,7 @@ export default function OnboardingFlow() {
                 🍯
               </motion.div>
               <h1 className="font-playfair text-3xl font-black mb-2" style={{ color: "#fef3c7" }}>Welcome</h1>
-              <p className="mb-8" style={{ color: "#c4956a" }}>Let's find the perfect honey remedies just for you.</p>
+              <p className="mb-8" style={{ color: "#f8fafc" }}>Let's find the perfect honey remedies just for you.</p>
               <button 
                 onClick={() => setStep(1)}
                 className="btn-gold w-full py-3.5 rounded-xl"
@@ -127,7 +127,7 @@ export default function OnboardingFlow() {
                     className="w-full p-4 text-left rounded-xl border-2 transition-all flex items-center justify-between"
                     style={gender === g.toLowerCase()
                       ? { borderColor: "#fbbf24", background: "rgba(251,191,36,0.12)", color: "#fef3c7" }
-                      : { borderColor: "rgba(251,191,36,0.15)", background: "rgba(255,255,255,0.03)", color: "#c4956a" }
+                      : { borderColor: "rgba(251,191,36,0.15)", background: "rgba(255,255,255,0.03)", color: "#f8fafc" }
                     }
                   >
                     <span className="font-medium">{g}</span>
@@ -148,7 +148,7 @@ export default function OnboardingFlow() {
               className="p-8 flex flex-col h-full flex-1"
             >
               <h2 className="font-playfair text-2xl font-bold mb-2" style={{ color: "#fef3c7" }}>How old are you?</h2>
-              <p className="text-sm mb-10" style={{ color: "#c4956a" }}>We use this to ensure age-appropriate remedies.</p>
+              <p className="text-sm mb-10" style={{ color: "#f8fafc" }}>We use this to ensure age-appropriate remedies.</p>
               
               <div className="flex-1 flex flex-col items-center justify-center">
                 <div className="font-playfair text-6xl font-black mb-6" style={{ color: "#fbbf24" }}>{age}</div>
@@ -181,7 +181,7 @@ export default function OnboardingFlow() {
               className="p-8 flex flex-col h-full flex-1"
             >
               <h2 className="font-playfair text-2xl font-bold mb-2" style={{ color: "#fef3c7" }}>Any health conditions?</h2>
-              <p className="text-sm mb-6" style={{ color: "#c4956a" }}>Select any that apply so we can filter unsafe remedies.</p>
+              <p className="text-sm mb-6" style={{ color: "#f8fafc" }}>Select any that apply so we can filter unsafe remedies.</p>
               
               <div className="flex flex-wrap gap-2 flex-1">
                 {['Diabetic', 'Pregnant', 'Breastfeeding', 'Honey allergy', 'None'].map((flag) => {
@@ -194,7 +194,7 @@ export default function OnboardingFlow() {
                       className="px-4 py-2 rounded-full border-2 text-sm font-medium transition-all"
                       style={isSelected
                         ? { borderColor: "#fbbf24", background: "rgba(251,191,36,0.15)", color: "#fef3c7" }
-                        : { borderColor: "rgba(255,255,255,0.1)", color: "#c4956a" }
+                        : { borderColor: "rgba(255,255,255,0.1)", color: "#f8fafc" }
                       }
                     >
                       {flag}

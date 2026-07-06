@@ -67,7 +67,7 @@ export default async function RemedyPage({ params }: { params: Promise<{ id: str
             {remedy.title}
           </motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
-            className="text-base" style={{ color: "#c4956a" }}>
+            className="text-base" style={{ color: "#f8fafc" }}>
             {remedy.description}
           </motion.p>
         </div>
@@ -91,7 +91,7 @@ export default async function RemedyPage({ params }: { params: Promise<{ id: str
                       <div className="flex justify-between items-start gap-4 mb-3">
                         <div>
                           <h3 className="font-bold text-lg mb-1" style={{ color: "#fef3c7" }}>{honeyVariety.name}</h3>
-                          <p className="text-sm" style={{ color: "#c4956a" }}>{honeyVariety.description}</p>
+                          <p className="text-sm" style={{ color: "#f8fafc" }}>{honeyVariety.description}</p>
                         </div>
                         <a href={shopUrl} target="_blank" rel="noopener noreferrer" className="btn-gold whitespace-nowrap text-xs font-bold px-4 py-2 rounded-lg flex-shrink-0">
                           Shop Now
@@ -120,7 +120,7 @@ export default async function RemedyPage({ params }: { params: Promise<{ id: str
               </h2>
               <ul className="space-y-3">
                 {ingredients.map((ingredient: string, i: number) => (
-                  <li key={i} className="flex items-start gap-3" style={{ color: "#c4956a" }}>
+                  <li key={i} className="flex items-start gap-3" style={{ color: "#f8fafc" }}>
                     <span className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: "#d97706" }} />
                     <span>{ingredient}</span>
                   </li>
@@ -133,7 +133,7 @@ export default async function RemedyPage({ params }: { params: Promise<{ id: str
               </h2>
               <ol className="space-y-4">
                 {steps.map((step: string, i: number) => (
-                  <li key={i} className="flex gap-3" style={{ color: "#c4956a" }}>
+                  <li key={i} className="flex gap-3" style={{ color: "#f8fafc" }}>
                     <span className="font-bold w-6 flex-shrink-0" style={{ color: "#d97706" }}>{i + 1}.</span>
                     <span>{step}</span>
                   </li>

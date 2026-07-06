@@ -42,7 +42,7 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.35, duration: 0.5 }}
         className="text-center mb-10 text-lg max-w-lg"
-        style={{ color: "#c4956a" }}
+        style={{ color: "#f8fafc" }}
       >
         Discover traditional honey-based remedies tailored for your specific ailments.
       </motion.p>
