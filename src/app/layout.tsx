@@ -83,13 +83,6 @@ export default function RootLayout({
                 Honey Remedies
               </span>
             </Link>
-            <Link
-              href="/admin"
-              className="text-sm font-medium px-4 py-1.5 rounded-full border border-amber-700/40 hover:border-amber-500 transition-colors"
-              style={{ color: "#fcd34d" }}
-            >
-              Admin
-            </Link>
           </div>
         </header>
 
