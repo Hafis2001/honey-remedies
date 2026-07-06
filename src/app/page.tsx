@@ -21,8 +21,8 @@ export default function Home() {
           className="absolute inset-0 rounded-full blur-2xl"
           style={{ background: "radial-gradient(circle, rgba(251,191,36,0.5) 0%, transparent 70%)", transform: "scale(1.6) translateY(10px)" }}
         />
-        <div className="relative text-9xl" style={{ filter: "drop-shadow(0 0 32px rgba(251,191,36,0.8)) drop-shadow(0 8px 24px rgba(217,119,6,0.6))" }}>
-          🍯
+        <div className="relative" style={{ filter: "drop-shadow(0 0 32px rgba(251,191,36,0.6)) drop-shadow(0 8px 24px rgba(217,119,6,0.5))" }}>
+          <img src="/images/bg_honey_museum.png" alt="Honey Museum" className="w-56 h-56 md:w-64 md:h-64 object-contain" />
         </div>
       </motion.div>
 

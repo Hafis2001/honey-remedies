@@ -61,7 +61,7 @@ export default function RootLayout({
         <div
           className="fixed inset-0 z-0 pointer-events-none"
           style={{
-            background: "linear-gradient(135deg, rgba(13,5,0,0.86) 0%, rgba(30,10,0,0.82) 50%, rgba(13,5,0,0.92) 100%)",
+            background: "linear-gradient(135deg, rgba(13,5,0,0.65) 0%, rgba(30,10,0,0.60) 50%, rgba(13,5,0,0.75) 100%)",
           }}
         />
 
