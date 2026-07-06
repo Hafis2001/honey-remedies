@@ -11,14 +11,28 @@ export default function Home() {
     >
       {/* Glowing animated logo */}
       <motion.div
-        animate={{ y: [0, -12, 0], rotateY: [0, 8, 0, -8, 0] }}
+        animate={{ y: [0, -12, 0] }}
         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
         className="relative mb-8"
-        style={{ perspective: "600px" }}
       >
-        <div className="absolute inset-0 rounded-full blur-2xl" style={{ background: "radial-gradient(circle, rgba(251,191,36,0.5) 0%, transparent 70%)", transform: "scale(1.6) translateY(10px)" }} />
-        <div className="relative" style={{ filter: "drop-shadow(0 0 32px rgba(251,191,36,0.6)) drop-shadow(0 8px 24px rgba(217,119,6,0.5))" }}>
-          <img src="/images/bg_honey_museum.png" alt="Honey Museum" className="w-56 h-56 md:w-64 md:h-64 object-contain" />
+        <div
+          className="absolute inset-0 rounded-full blur-2xl"
+          style={{
+            background: "radial-gradient(circle, rgba(251,191,36,0.5) 0%, transparent 70%)",
+            transform: "scale(1.6) translateY(10px)",
+          }}
+        />
+        <div
+          className="relative"
+          style={{
+            filter: "drop-shadow(0 0 32px rgba(251,191,36,0.6)) drop-shadow(0 8px 24px rgba(217,119,6,0.5))",
+          }}
+        >
+          <img
+            src="/images/bg_honey_museum.png"
+            alt="Honey Museum"
+            className="w-56 h-56 md:w-64 md:h-64 object-contain"
+          />
         </div>
       </motion.div>
 
@@ -28,7 +42,11 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
         className="font-playfair text-4xl md:text-6xl font-black text-center mb-4 leading-tight"
-        style={{ background: "linear-gradient(135deg, #fbbf24 0%, #fef3c7 40%, #d97706 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+        style={{
+          background: "linear-gradient(135deg, #fbbf24 0%, #fef3c7 40%, #d97706 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
       >
         Find Your Natural Relief
       </motion.h1>
@@ -53,7 +71,7 @@ export default function Home() {
           href="/search"
           className="btn-gold px-10 py-4 rounded-2xl text-lg font-bold inline-flex items-center gap-3 glow-border"
         >
-          🍯 Browse All Remedies
+          Browse All Remedies
         </Link>
       </motion.div>
 
@@ -67,7 +85,7 @@ export default function Home() {
             animate={{ y: [0, -20, 0], rotate: [0, 30, 0] }}
             transition={{ repeat: Infinity, duration: 5 + i * 0.8, delay: i * 0.6, ease: "easeInOut" }}
           >
-            ⬡
+            &#x2B21;
           </motion.div>
         ))}
       </div>
