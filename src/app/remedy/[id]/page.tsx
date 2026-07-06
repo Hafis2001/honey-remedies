@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import * as motion from "framer-motion/client";
 
 // Helper to determine shop URL for each honey type
-function getShopUrl(name: string): string {
+function getShopUrl(): string {
   // All products now go to the main product list page
   return "https://www.beecrafthoney.com/product/Honey/1/3/101";
 }
@@ -76,7 +76,7 @@ export default async function RemedyPage({ params }: { params: Promise<{ id: str
                   <div key={honeyVariety.id} className="flex items-center justify-between gap-4 rounded-xl px-5 py-4 bg-white shadow-sm border border-amber-100">
                     <span className="font-semibold text-base" style={{ color: "#451a03" }}>{honeyVariety.name}</span>
                     <a
-                      href={getShopUrl(honeyVariety.name)}
+                      href={getShopUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-gold whitespace-nowrap text-xs font-bold px-4 py-2 rounded-lg flex-shrink-0"

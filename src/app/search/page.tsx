@@ -6,18 +6,7 @@ import * as motion from "framer-motion/client";
 
 export const dynamic = 'force-dynamic';
 
-// Helper to determine shop URL for each honey type
-function getShopUrl(name: string): string {
-  const n = name.toLowerCase();
-  if (n.includes("black forest")) return "https://www.beecrafthoney.com/product/Honey/1/3/101/Black-Forest-Honey---500gm-3";
-  if (n.includes("sidr")) return "https://www.beecrafthoney.com/product/Honey/1/3/101/Sidr-Honey";
-  if (n.includes("manuka")) return "https://www.beecrafthoney.com/product/Honey/1/3/101/Manuka-Honey";
-  if (n.includes("saffron")) return "https://www.beecrafthoney.com/product/Honey/1/3/101/Saffron-Honey";
-  if (n.includes("mustard")) return "https://www.beecrafthoney.com/product/Honey/1/3/101/Mustard-Honey";
-  if (n.includes("tulsi")) return "https://www.beecrafthoney.com/product/Honey/1/3/101/Tulsi-Honey";
-  if (n.includes("ajwain")) return "https://www.beecrafthoney.com/product/Honey/1/3/101/Ajwain-Honey";
-  return "https://www.beecrafthoney.com/";
-}
+// Removed unused getShopUrl function
 
 async function getRemedies(query: string) {
   const allRemedies = await prisma.remedy.findMany({
@@ -77,7 +66,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
           className="grid gap-5"
         >
           {remedies.map((remedy: any) => {
-            const ingredients: string[] = JSON.parse(remedy.ingredients || "[]");
+              return (
               <motion.div
                 key={remedy.id}
                 variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
