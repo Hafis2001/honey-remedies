@@ -49,7 +49,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
   const remedies = await getRemedies(query);
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6 max-w-3xl mx-auto">
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6 max-w-3xl mx-auto pt-12">
 
       {/* Search Input */}
       <div className="glass-card rounded-2xl p-4">
@@ -84,7 +84,23 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                 variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
                 whileHover={{ scale: 1.01, y: -2 }}
               >
-                <div className="glass-card glass-card-hover rounded-2xl overflow-hidden">
+                <div className="glass-card glass-card-hover rounded-2xl overflow-visible relative">
+                  {/* Bee on top-right corner of card */}
+                  <img
+                    src="/images/bee.png"
+                    alt="bee"
+                    className="absolute pointer-events-none"
+                    style={{
+                      width: "70px",
+                      height: "50px",
+                      objectFit: "contain",
+                      objectPosition: "right",
+                      top: "-22px",
+                      right: "-10px",
+                      zIndex: 10,
+                      filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.5))",
+                    }}
+                  />
 
                   {/* ── Title ── */}
                   <div className="px-6 pt-5 pb-4 border-b" style={{ borderColor: "rgba(251,191,36,0.15)", background: "linear-gradient(135deg, rgba(120,53,15,0.3) 0%, rgba(20,8,0,0.2) 100%)" }}>
