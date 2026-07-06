@@ -101,6 +101,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                   </div>
                 </Link>
               </motion.div>
+            );
           })}
         </motion.div>
       )}
