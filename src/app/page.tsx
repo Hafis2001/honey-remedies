@@ -9,99 +9,56 @@ export default function Home() {
       transition={{ duration: 0.7, ease: "easeOut" }}
       className="flex flex-col min-h-[85vh] relative max-w-sm mx-auto overflow-hidden"
     >
-      {/* Title & Subtitle */}
-      <div className="z-10 mb-2 mt-4 px-2">
-        <motion.h1
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="font-inter text-[32px] md:text-4xl font-black text-[#1A1A1A] leading-[1.1] mb-2"
-        >
-          Natural Honey,<br />Just a Tap Away.
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.35, duration: 0.5 }}
-          className="text-[#8E8E8E] text-sm font-medium font-inter"
-        >
-          Fresh, tasty honey at great prices.
-        </motion.p>
-      </div>
-
-      {/* Main Image Area with Floating Badges */}
-      <div className="relative flex-1 flex items-center justify-center min-h-[420px]">
-        {/* Badges - Animated one by one */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, x: 20 }}
-          animate={{ opacity: 1, scale: 1, x: 0, y: [0, -8, 0] }}
-          transition={{ 
-            opacity: { delay: 0.5, duration: 0.4 },
-            scale: { delay: 0.5, duration: 0.4, type: "spring" },
-            x: { delay: 0.5, duration: 0.4 },
-            y: { repeat: Infinity, duration: 3, ease: "easeInOut", delay: 0.9 }
-          }}
-          className="absolute top-2 right-12 bg-white rounded-[20px] shadow-[0_10px_25px_rgba(0,0,0,0.04)] px-5 py-3 text-center z-20"
-        >
-          <div className="text-[#8E8E8E] text-xs font-semibold mb-0.5">Quality</div>
-          <div className="text-[#1A1A1A] font-black text-sm"><span className="text-[17px]">100%</span> <span className="text-[#8E8E8E] font-medium text-xs">Pure</span></div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, x: -20 }}
-          animate={{ opacity: 1, scale: 1, x: 0, y: [0, 8, 0] }}
-          transition={{ 
-            opacity: { delay: 0.8, duration: 0.4 },
-            scale: { delay: 0.8, duration: 0.4, type: "spring" },
-            x: { delay: 0.8, duration: 0.4 },
-            y: { repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1.2 }
-          }}
-          className="absolute top-24 left-2 bg-white rounded-[20px] shadow-[0_10px_25px_rgba(0,0,0,0.04)] px-5 py-3 text-center z-20"
-        >
-          <div className="text-[#8E8E8E] text-xs font-semibold mb-0.5">Type</div>
-          <div className="text-[#1A1A1A] font-black text-sm"><span className="text-[17px]">Raw</span> <span className="text-[#8E8E8E] font-medium text-xs">Honey</span></div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
-          transition={{ 
-            opacity: { delay: 1.1, duration: 0.4 },
-            scale: { delay: 1.1, duration: 0.4, type: "spring" },
-            y: { repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1.5 }
-          }}
-          className="absolute bottom-28 right-4 bg-white rounded-[20px] shadow-[0_10px_25px_rgba(0,0,0,0.04)] px-5 py-3 text-center z-20"
-        >
-          <div className="text-[#8E8E8E] text-xs font-semibold mb-0.5">Additive</div>
-          <div className="text-[#1A1A1A] font-black text-sm"><span className="text-[17px]">0%</span> <span className="text-[#8E8E8E] font-medium text-xs">Sugar</span></div>
-        </motion.div>
-
-
-
-        {/* Honey Jar - 3D Floating Animation */}
+      {/* Main Image Area with Vision & Mission */}
+      <div className="relative flex-1 flex flex-col items-center justify-center mt-12 mb-6">
+        
+        {/* App Icon (Logo without the white card using mix-blend-mode) */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ 
-            scale: 1, 
+            scale: 1.5, 
             opacity: 1,
-            y: [-12, 12, -12],
-            rotateY: [-8, 8, -8],
-            rotateX: [3, -3, 3]
+            y: [-5, 5, -5]
           }}
           transition={{ 
-            opacity: { delay: 0.4, duration: 0.8, ease: "easeOut" },
-            scale: { delay: 0.4, duration: 0.8, ease: "easeOut" },
-            y: { repeat: Infinity, duration: 4, ease: "easeInOut" },
-            rotateY: { repeat: Infinity, duration: 5, ease: "easeInOut" },
-            rotateX: { repeat: Infinity, duration: 4.5, ease: "easeInOut" }
+            opacity: { delay: 0.2, duration: 0.8, ease: "easeOut" },
+            scale: { delay: 0.2, duration: 0.8, ease: "easeOut" },
+            y: { repeat: Infinity, duration: 4, ease: "easeInOut" }
           }}
-          className="relative z-10 w-full max-w-[280px] perspective-[1000px]"
+          className="relative z-10 w-full max-w-[220px] mb-16"
         >
           <img
             src="/images/logo_beecraft_white.png"
             alt="BeeCraft Logo"
-            className="w-full max-w-[200px] h-auto object-contain drop-shadow-2xl mx-auto"
+            className="w-full h-auto object-contain mx-auto"
+            style={{ mixBlendMode: 'multiply' }}
           />
+        </motion.div>
+
+        {/* Vision & Mission Quotes */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="w-full px-2 space-y-5 text-center"
+        >
+          {/* Vision */}
+          <div>
+            <h2 className="font-inter text-[10px] tracking-[0.2em] uppercase font-black mb-1.5 text-[#FF9D00]">Vision</h2>
+            <p className="font-playfair text-xl italic font-medium leading-snug text-[#1A1A1A]">
+              "Empowering healthy lives with pure, natural products."
+            </p>
+          </div>
+          
+          <div className="w-12 h-px bg-[#FF9D00]/30 mx-auto"></div>
+          
+          {/* Mission */}
+          <div>
+            <h2 className="font-inter text-[10px] tracking-[0.2em] uppercase font-black mb-1.5 text-[#FF9D00]">Mission</h2>
+            <p className="text-xs font-inter font-medium leading-relaxed text-[#8E8E8E] max-w-[320px] mx-auto">
+              To provide everyone with access to 100% quality natural honey, fostering awareness of its purity and health benefits. We offer a diverse range of honey products in various packagings, creating enriching experiences that celebrate nature's sweetness as a natural remedy.
+            </p>
+          </div>
         </motion.div>
       </div>
 

@@ -38,18 +38,53 @@ export default async function RemedyPage({ params }: { params: Promise<{ id: str
 
 
 
-      {/* Content Card */}
-      <div className="bg-white rounded-[32px] p-6 shadow-[0_ -10px_40px_rgba(0,0,0,0.03)] mx-1">
-        
-        <div className="flex justify-between items-start mb-4">
-          <h2 className="font-inter text-2xl font-black text-gray-900 leading-tight pr-4">
-            {remedy.title}
-          </h2>
-          <div className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-lg">
-            <Star className="w-3.5 h-3.5 fill-[#FF9D00] text-[#FF9D00]" />
-            <span className="text-sm font-bold text-gray-800">4.9</span>
+      {/* Content Card Wrapper */}
+      <div className="relative mx-1">
+        {/* Bee on top of the card */}
+        <img
+          src="/images/bee.png"
+          alt="bee"
+          className="absolute -top-6 left-6 w-14 z-20 pointer-events-none opacity-90 drop-shadow-md"
+        />
+
+        {/* Content Card */}
+        <div className="bg-white rounded-[32px] p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.03)] relative overflow-hidden">
+          
+          {/* Honey Drip Top Corner */}
+          <div className="absolute top-0 left-0 w-32 h-20 z-0 pointer-events-none">
+            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ filter: 'drop-shadow(0px 4px 6px rgba(255,157,0,0.5))' }}>
+              <defs>
+                <linearGradient id="honey-grad-detail" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#FFC107" />
+                  <stop offset="40%" stopColor="#FF9800" />
+                  <stop offset="100%" stopColor="#E65100" />
+                </linearGradient>
+                <linearGradient id="honey-highlight-detail" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <path 
+                fill="url(#honey-grad-detail)" 
+                d="M0,0 L100,0 L100,10 C95,10 90,40 85,40 C80,40 75,10 70,10 C65,10 60,60 55,60 C50,60 45,20 40,20 C35,20 30,70 25,70 C20,70 15,10 10,10 C5,10 0,30 0,30 Z" 
+              />
+              <path 
+                fill="url(#honey-highlight-detail)" 
+                d="M0,0 L100,0 L100,8 C95,8 90,36 85,36 C80,36 75,8 70,8 C65,8 60,55 55,55 C50,55 45,18 40,18 C35,18 30,65 25,65 C20,65 15,8 10,8 C5,8 0,26 0,26 Z" 
+                opacity="0.4"
+              />
+            </svg>
           </div>
-        </div>
+
+          <div className="relative z-10 flex justify-between items-start mb-4">
+            <h2 className="font-inter text-2xl font-black text-gray-900 leading-tight pr-4">
+              {remedy.title}
+            </h2>
+            <div className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-lg">
+              <Star className="w-3.5 h-3.5 fill-[#FF9D00] text-[#FF9D00]" />
+              <span className="text-sm font-bold text-gray-800">4.9</span>
+            </div>
+          </div>
 
         {/* Stats Row */}
         <div className="flex items-center justify-between text-xs text-gray-500 font-medium py-4 border-b border-gray-100 mb-6">
@@ -108,6 +143,7 @@ export default async function RemedyPage({ params }: { params: Promise<{ id: str
             </div>
           )}
         </div>
+      </div>
       </div>
 
       {/* Fixed Bottom Action Bar */}

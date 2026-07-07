@@ -88,20 +88,39 @@ export default function OnboardingFlow() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="p-8 text-center flex flex-col items-center justify-center h-full flex-1"
+              className="p-8 text-center flex flex-col items-center justify-between h-full flex-1"
             >
-              <motion.div 
-                animate={{ y: [0, -10, 0], filter: ["drop-shadow(0 0 16px rgba(251,191,36,0.4))", "drop-shadow(0 0 28px rgba(251,191,36,0.8))", "drop-shadow(0 0 16px rgba(251,191,36,0.4))"] }} 
-                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-                className="text-8xl mb-6"
-              >
-                🍯
-              </motion.div>
-              <h1 className="font-playfair text-3xl font-black mb-2" style={{ color: "#fef3c7" }}>Welcome</h1>
-              <p className="mb-8" style={{ color: "#f8fafc" }}>Let's find the perfect honey remedies just for you.</p>
+              <div className="flex-1 flex flex-col items-center justify-center w-full">
+                <motion.div 
+                  animate={{ y: [0, -10, 0], filter: ["drop-shadow(0 0 16px rgba(251,191,36,0.4))", "drop-shadow(0 0 28px rgba(251,191,36,0.8))", "drop-shadow(0 0 16px rgba(251,191,36,0.4))"] }} 
+                  transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                  className="text-[140px] mb-8"
+                >
+                  🍯
+                </motion.div>
+                
+                <div className="w-full max-w-sm space-y-8 text-center">
+                  <div>
+                    <h2 className="font-inter text-[10px] tracking-[0.2em] uppercase font-bold mb-3" style={{ color: "#fbbf24" }}>Vision</h2>
+                    <p className="font-playfair text-[22px] italic font-medium leading-relaxed" style={{ color: "#fef3c7" }}>
+                      "Empowering healthy lives with pure, natural products."
+                    </p>
+                  </div>
+                  
+                  <div className="w-12 h-px bg-white/20 mx-auto"></div>
+
+                  <div>
+                    <h2 className="font-inter text-[10px] tracking-[0.2em] uppercase font-bold mb-3" style={{ color: "#fbbf24" }}>Mission</h2>
+                    <p className="text-[13px] font-inter font-light leading-[1.8] opacity-90" style={{ color: "#f8fafc" }}>
+                      To provide everyone with access to 100% quality natural honey, fostering awareness of its purity and health benefits. We offer a diverse range of honey products in various packagings, creating enriching experiences that celebrate nature's sweetness as a natural remedy.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               <button 
                 onClick={() => setStep(1)}
-                className="btn-gold w-full py-3.5 rounded-xl"
+                className="btn-gold w-full py-4 mt-8 rounded-[20px] text-lg font-bold shadow-[0_4px_20px_rgba(251,191,36,0.3)] transition-all active:scale-95"
               >
                 Get Started
               </button>
