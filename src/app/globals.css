@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-honey-50: #fefce8;
-  --color-honey-100: #fef9c3;
-  --color-honey-200: #fef08a;
-  --color-honey-300: #fde047;
-  --color-honey-400: #facc15;
-  --color-honey-500: #eab308;
-  --color-honey-600: #ca8a04;
-  --color-honey-700: #a16207;
-  --color-honey-800: #854d0e;
-  --color-honey-900: #713f12;
-  --color-honey-950: #422006;
+  --color-honey-50: #fffdf5;
+  --color-honey-100: #fff9db;
+  --color-honey-200: #ffefad;
+  --color-honey-300: #ffe176;
+  --color-honey-400: #ffce40;
+  --color-honey-500: #ffb611;
+  --color-honey-600: #eb9400;
+  --color-honey-700: #c26c02;
+  --color-honey-800: #9e5309;
+  --color-honey-900: #80430e;
+  --color-honey-950: #492203;
   --font-playfair: var(--font-playfair);
   --font-inter: var(--font-inter);
 }
@@ -21,83 +21,76 @@ html {
 }
 
 :root {
-  --glass-bg: rgba(20, 8, 0, 0.55);
-  --glass-border: rgba(251, 191, 36, 0.15);
-  --glass-blur: blur(20px);
-  --gold: #fbbf24;
-  --gold-dim: #d97706;
-  --text-main: #fff5e4;
-  --text-muted: #f8fafc;
+  --app-bg: #FFF8E6;
+  --card-bg: #ffffff;
+  --gold: #FF9D00;
+  --gold-dim: #E68A00;
+  --text-main: #1A1A1A;
+  --text-muted: #8E8E8E;
 }
 
-/* Glassmorphism card utility */
+body {
+  background-color: var(--app-bg) !important;
+  color: var(--text-main) !important;
+}
+
+/* Updated solid card utility replacing the old dark glass */
 .glass-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(251, 191, 36, 0.08);
+  background: var(--card-bg);
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .glass-card-hover:hover {
-  border-color: rgba(251, 191, 36, 0.35);
-  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(251, 191, 36, 0.08), inset 0 1px 0 rgba(251, 191, 36, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(255, 157, 0, 0.1);
 }
 
 .font-playfair {
   font-family: var(--font-playfair), "Georgia", serif;
 }
 
-/* Golden glow effect */
-.gold-glow {
-  filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.6));
+.font-inter {
+  font-family: var(--font-inter), "Helvetica", sans-serif;
 }
 
 /* Honey gradient text */
 .honey-text {
-  background: linear-gradient(135deg, #fbbf24 0%, #d97706 50%, #fbbf24 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Animated honey border */
-@keyframes borderGlow {
-  0%, 100% { box-shadow: 0 0 8px rgba(251, 191, 36, 0.2); }
-  50% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.5); }
-}
-
-.glow-border {
-  animation: borderGlow 3s ease-in-out infinite;
+  color: var(--text-main);
 }
 
 /* Input styling */
 .honey-input {
-  background: rgba(20, 8, 0, 0.6);
-  border: 1px solid rgba(251, 191, 36, 0.25);
-  color: #fff5e4;
-  backdrop-filter: blur(12px);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  color: var(--text-main);
+  border-radius: 9999px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s;
 }
-.honey-input::placeholder { color: rgba(196, 149, 106, 0.7); }
+.honey-input::placeholder { color: var(--text-muted); }
 .honey-input:focus {
   outline: none;
-  border-color: rgba(251, 191, 36, 0.6);
-  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.12), 0 0 20px rgba(251, 191, 36, 0.15);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255, 157, 0, 0.2);
 }
 
-/* Gold button */
+/* Orange button */
 .btn-gold {
-  background: linear-gradient(135deg, #d97706 0%, #fbbf24 50%, #d97706 100%);
-  background-size: 200% 200%;
-  color: #0d0500;
+  background: var(--gold);
+  color: #ffffff !important;
   font-weight: 700;
-  transition: background-position 0.4s, transform 0.1s, box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
+  border-radius: 9999px;
+  transition: transform 0.1s, box-shadow 0.2s, background-color 0.2s;
+  box-shadow: 0 6px 15px rgba(255, 157, 0, 0.3);
+  text-align: center;
 }
 .btn-gold:hover {
-  background-position: right center;
-  box-shadow: 0 6px 28px rgba(251, 191, 36, 0.5);
+  background: var(--gold-dim);
+  box-shadow: 0 8px 20px rgba(255, 157, 0, 0.4);
 }
 .btn-gold:active { transform: scale(0.97); }
 

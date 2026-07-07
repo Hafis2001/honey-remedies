@@ -75,28 +75,27 @@ export default function SearchInput() {
         {/* Actual search form */}
         <form
           onSubmit={handleSearch}
-          className="flex items-center w-full rounded-xl overflow-hidden"
+          className="flex items-center w-full rounded-full overflow-hidden shadow-sm"
           style={{
-            background: "rgba(20, 8, 0, 0.65)",
-            border: "1px solid rgba(251,191,36,0.4)",
-            backdropFilter: "blur(12px)",
+            background: "#ffffff",
+            border: "1px solid rgba(0,0,0,0.05)",
           }}
         >
-          <div className="pl-4 flex items-center flex-shrink-0">
-            <Search className="h-5 w-5" style={{ color: "#d97706" }} />
+          <div className="pl-5 flex items-center flex-shrink-0">
+            <Search className="h-5 w-5" style={{ color: "#a19d98" }} />
           </div>
           <input
             type="text"
-            className="flex-1 min-w-0 bg-transparent text-sm sm:text-base py-3 sm:py-4 px-2 sm:px-3 outline-none"
-            placeholder="Search remedies..."
+            className="flex-1 min-w-0 bg-transparent text-sm sm:text-base py-3.5 px-3 outline-none"
+            placeholder="Search..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            style={{ color: "#fef3c7" }}
+            style={{ color: "#1e1e1e" }}
           />
           <motion.button
             type="submit"
             whileTap={{ scale: 0.95 }}
-            className="btn-gold flex-shrink-0 px-3 sm:px-5 py-2 sm:py-3 m-1 sm:m-1.5 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap"
+            className="btn-gold flex-shrink-0 px-5 sm:px-6 py-2.5 m-1.5 rounded-full text-sm font-bold whitespace-nowrap"
           >
             Search
           </motion.button>

@@ -2,8 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { Info } from "lucide-react";
-import OnboardingFlow from "@/components/OnboardingFlow";
+import { Info, Bell } from "lucide-react";
 import HoneyScene from "@/components/HoneyScene";
 
 const playfair = Playfair_Display({
@@ -18,7 +17,7 @@ const inter = Inter({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#1a0a00",
+  themeColor: "#FFF8E6",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -44,54 +43,33 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${playfair.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}
-        style={{ background: "#0d0500", color: "#fff5e4" }}
       >
-        {/* Background Image */}
-        <div
-          className="fixed inset-0 z-0 opacity-70"
-          style={{
-            backgroundImage: "url('/images/bg_honey_museum.png')",
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-          }}
-        />
-        {/* Dark overlay for readability */}
-        <div
-          className="fixed inset-0 z-0 pointer-events-none"
-          style={{
-            background: "linear-gradient(135deg, rgba(13,5,0,0.65) 0%, rgba(30,10,0,0.60) 50%, rgba(13,5,0,0.75) 100%)",
-          }}
-        />
-
         {/* 3D Canvas animation layer */}
         <HoneyScene />
 
-        {/* Onboarding */}
-        <OnboardingFlow />
-
-        {/* Header */}
-        <header className="sticky top-0 z-30 border-b border-amber-900/30" style={{
-          background: "rgba(13, 5, 0, 0.75)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-        }}>
-          <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-            <Link href="/info" className="flex items-center gap-3 group">
-              <img src="/images/logo_beecraft_white.png" alt="Beecraft Logo" className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] group-hover:scale-105 transition-transform rounded-sm" />
-              <span className="font-playfair text-xl font-bold tracking-wide" style={{ color: "#fbbf24" }}>
-                Beecraft Remedies
-              </span>
+        {/* Header - Profile and Notification style from images */}
+        <header className="sticky top-0 z-30 pt-6 pb-2 bg-transparent">
+          <div className="max-w-md md:max-w-3xl mx-auto px-4 flex justify-between items-center">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-11 h-11 rounded-full bg-white shadow-sm overflow-hidden p-1 flex items-center justify-center">
+                <img src="/images/logo_beecraft_white.png" alt="Profile" className="w-full h-full object-contain" />
+              </div>
+              <div>
+                <p className="text-gray-500 text-xs font-inter mb-0.5">Welcome Back</p>
+                <p className="text-gray-900 font-bold text-sm md:text-base font-inter">Beecraft User</p>
+              </div>
             </Link>
+            
+            <button className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors">
+              <Bell className="w-5 h-5 text-gray-700" />
+            </button>
           </div>
         </header>
 
         {/* Main content */}
-        <main className="relative z-10 flex-1 w-full max-w-5xl mx-auto px-4 py-8 md:px-6">
+        <main className="relative z-10 flex-1 w-full max-w-md md:max-w-3xl mx-auto px-4 py-4 md:px-6">
           {children}
         </main>
-
 
       </body>
     </html>
