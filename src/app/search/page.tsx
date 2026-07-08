@@ -97,49 +97,46 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         <motion.div
           initial="hidden" animate="show"
           variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } }}
-          className="grid grid-cols-2 sm:grid-cols-3 gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 gap-6 py-2"
         >
           {remedies.map((remedy: any) => {
             return (
               <motion.div
                 key={remedy.id}
                 variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-                whileHover={{ scale: 1.02 }}
               >
-                <Link href={`/remedy/${remedy.id}`} className="block h-full">
-                  <div className="glass-card h-full rounded-[24px] overflow-hidden relative flex flex-col p-4 pt-8 shadow-[0_8px_20px_rgba(0,0,0,0.03)] border border-gray-50 bg-white items-center text-center">
-
-                    {/* Honey Drip Top Corner */}
-                    <svg className="absolute top-0 left-0 w-28 h-16 z-0 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ filter: 'drop-shadow(0px 4px 6px rgba(255,157,0,0.5))' }}>
-                      <defs>
-                        <linearGradient id={`honey-grad-${remedy.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="#FFC107" />
-                          <stop offset="40%" stopColor="#FF9800" />
-                          <stop offset="100%" stopColor="#E65100" />
-                        </linearGradient>
-                        <linearGradient id={`honey-highlight-${remedy.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
-                          <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
-                        </linearGradient>
-                      </defs>
-                      <path 
-                        fill={`url(#honey-grad-${remedy.id})`} 
-                        d="M0,0 L100,0 L100,10 C95,10 90,40 85,40 C80,40 75,10 70,10 C65,10 60,60 55,60 C50,60 45,20 40,20 C35,20 30,70 25,70 C20,70 15,10 10,10 C5,10 0,30 0,30 Z" 
-                      />
-                      <path 
-                        fill={`url(#honey-highlight-${remedy.id})`} 
-                        d="M0,0 L100,0 L100,8 C95,8 90,36 85,36 C80,36 75,8 70,8 C65,8 60,55 55,55 C50,55 45,18 40,18 C35,18 30,65 25,65 C20,65 15,8 10,8 C5,8 0,26 0,26 Z" 
-                        opacity="0.4"
-                      />
-                    </svg>
-
-                    <h2 className="font-inter text-[13px] font-bold text-gray-900 mb-1 leading-tight line-clamp-2 relative z-10">
-                      {remedy.title}
-                    </h2>
-
-                    <div className="mt-auto pt-2 w-full flex justify-center">
-                      <div className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center">
-                        <span className="text-orange-500 text-[10px] font-black">➔</span>
+                <Link href={`/remedy/${remedy.id}`} className="block">
+                  <div className="hex-wrapper">
+                    <div className="hex-card">
+                      {/* Honey Drip Top */}
+                      <svg className="absolute top-0 left-0 w-full h-[45%] z-0 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ filter: 'drop-shadow(0px 4px 6px rgba(255,157,0,0.5))' }}>
+                        <defs>
+                          <linearGradient id={`honey-grad-${remedy.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#FFC107" />
+                            <stop offset="40%" stopColor="#FF9800" />
+                            <stop offset="100%" stopColor="#E65100" />
+                          </linearGradient>
+                          <linearGradient id={`honey-highlight-${remedy.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
+                            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+                          </linearGradient>
+                        </defs>
+                        <path
+                          fill={`url(#honey-grad-${remedy.id})`}
+                          d="M0,0 L100,0 L100,10 C95,10 90,40 85,40 C80,40 75,10 70,10 C65,10 60,60 55,60 C50,60 45,20 40,20 C35,20 30,70 25,70 C20,70 15,10 10,10 C5,10 0,30 0,30 Z"
+                        />
+                        <path
+                          fill={`url(#honey-highlight-${remedy.id})`}
+                          d="M0,0 L100,0 L100,8 C95,8 90,36 85,36 C80,36 75,8 70,8 C65,8 60,55 55,55 C50,55 45,18 40,18 C35,18 30,65 25,65 C20,65 15,8 10,8 C5,8 0,26 0,26 Z"
+                          opacity="0.4"
+                        />
+                      </svg>
+                      <div className="hex-card-inner">
+                        <span className="text-2xl leading-none">🍯</span>
+                        <h2 className="font-inter text-[11px] font-bold text-gray-900 leading-tight line-clamp-3">
+                          {remedy.title}
+                        </h2>
+                        <span className="text-orange-400 text-[10px] font-black leading-none">➔</span>
                       </div>
                     </div>
                   </div>
