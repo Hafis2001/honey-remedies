@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}
+        className={`${playfair.variable} ${inter.variable} antialiased min-h-screen h-screen flex flex-col`}
       >
         {/* 3D Canvas animation layer */}
         <HoneyScene />
