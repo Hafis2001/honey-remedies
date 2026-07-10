@@ -29,10 +29,9 @@ export default function Home() {
           className="relative z-10 w-full max-w-[200px] mb-10 flex-shrink-0"
         >
           <img
-            src="/images/logo_beecraft_white.png"
+            src="/images/logo_beecraft_transparent.png"
             alt="BeeCraft Logo"
             className="w-full h-auto object-contain mx-auto"
-            style={{ mixBlendMode: 'multiply' }}
           />
         </motion.div>
 
